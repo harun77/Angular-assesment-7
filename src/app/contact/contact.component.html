@@ -36,21 +36,25 @@
 
     <div fxFlex fxFlexOffset="20px" class="form-size">
         <h3>Send us your feedback</h3>
-        <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+        <form #fform="ngForm" novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
             <p>
                 <mat-form-field class="half-width">
                     <input type="text" matInput formControlName="firstname" placeholder="First name" required>
+                    <mat-error *ngIf="hasError('firstname')">First Name is required</mat-error>
                 </mat-form-field>
                 <mat-form-field class="half-width">
                     <input type="text" matInput formControlName="lastname" placeholder="Last name" required>
+                    <mat-error *ngIf="hasError('lastname')">Last Name is required</mat-error>
                 </mat-form-field>
             </p>
             <p>
                 <mat-form-field class="half-width">
                     <input type="tel" matInput formControlName="telnum" placeholder="Tel number" required>
+                    <mat-error *ngIf="hasError('telnum')">Tel. number is required</mat-error>
                 </mat-form-field>
                 <mat-form-field class="half-width">
                     <input type="email" matInput formControlName="email" placeholder="Email" required>
+                    <mat-error *ngIf="hasError('email')">Email is required</mat-error>
                 </mat-form-field>
             </p>
             <table class="form-size">
@@ -70,7 +74,7 @@
                     <textarea matInput formControlName="message" placeholder="Your feedback" rows="20"></textarea>
                 </mat-form-field>
             </p>
-            <button type="submit" mat-button class="background-primary text-floral-white">Submit</button>
+            <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="feedbackForm.invalid">Submit</button>
         </form>
     </div>
 </div>
