@@ -13,11 +13,23 @@
                 <p>{{ dish.description }}</p>
             </mat-card-content>
             <mat-card-actions>
+                <button mat-button [routerLink]="['/dishdetail', prev]">
+                    <span class="fa fa-chevron-left fa-lg"></span>
+                </button>
                 <button mat-button>LIKE</button>
                 <button mat-button>SHARE</button>
                 <button mat-button (click)="goBack()">BACK</button>
+                <span class="flex-spacer"></span>
+                <button mat-button [routerLink]="['/dishdetail', next]">
+                    <span class="fa fa-chevron-right fa-lg"></span>
+                </button>
+
             </mat-card-actions>
         </mat-card>
+    </div>
+    <div [hidden]="dish" fxFlex="40">
+        <mat-spinner></mat-spinner>
+        <h4>Dish is loading...</h4>
     </div>
 
     <div fxFlex="40">
@@ -29,6 +41,10 @@
                 <p matLine>--{{comment.author}} {{comment.date | date}}</p>
             </mat-list-item>
         </mat-list>
+    </div>
+    <div [hidden]="dish" fxFlex="40">
+        <mat-spinner></mat-spinner>
+        <h4>Comments are loading...</h4>
     </div>
 
 </div>
